@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --greyOpacity200: rgba(0,27,55,.1);
+}
