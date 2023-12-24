@@ -1,8 +1,8 @@
-import type { NextPage } from "next";
-import BlogPost from "../components/BlogPost";
-import Container from "../components/Container";
-import { allPosts } from "contentlayer/generated";
-import { InferGetStaticPropsType } from "next";
+import type { NextPage } from 'next';
+import BlogPost from '../components/BlogPost';
+import Container from '../components/Container';
+import { allPosts } from 'contentlayer/generated';
+import { InferGetStaticPropsType } from 'next';
 
 const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -23,9 +23,7 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 };
 
 export const getStaticProps = async () => {
-  const posts = allPosts.sort(
-    (a, b) => Number(new Date(b.date)) - Number(new Date(a.date))
-  );
+  const posts = allPosts.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
 
   return {
     props: {
