@@ -1,8 +1,5 @@
-import type { NextPage } from 'next';
 import Container from '../components/Container';
-import Image from 'next/image';
 import RecentPosts from '../components/RecentPosts';
-import metadata from '../data/metadata';
 import { allPosts } from 'contentlayer/generated';
 import { InferGetStaticPropsType } from 'next';
 
@@ -10,7 +7,7 @@ const Home = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Container>
       <div className={`my-5 w-full`}>
-        ...
+        <span>첫화면</span>
         <RecentPosts posts={posts} />
       </div>
     </Container>

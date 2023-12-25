@@ -15,7 +15,7 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   return (
     <Container customMeta={customMeta}>
-      <article className={`max-w-none w-full mt-10 prose`}>
+      <article className={`max-w-none w-full mt-10 prose dark:prose-invert`}>
         <h1>{post.title}</h1>
         <MDXComponent />
       </article>
