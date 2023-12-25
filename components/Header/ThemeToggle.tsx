@@ -17,7 +17,7 @@ export default function ThemeToggle() {
         setTheme(currentTheme === 'dark' ? 'light' : 'dark');
       }}
       startContent={<IoIosMoon color="rgb(245 245 244)" />}
-      endContent={<PiSunDimFill color="rgb(41 37 36)" />}
+      endContent={<PiSunDimFill color="#1a1b1e" />}
       classNames={{
         wrapper: 'mr-0 bg-stone-100 group-data-[selected=true]:bg-stone-800',
         thumb: 'shadow-none',

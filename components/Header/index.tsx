@@ -12,7 +12,7 @@ const montserrat = Montserrat({
 export default function Header() {
   return (
     <header
-      className={`h-[var(--navbar-height)] border-b border-solid border-b-[color:var(--greyOpacity200)] sticky top-0 left-0 z-50 w-full bg-white/[0.85] backdrop-blur-2xl`}
+      className={`h-[var(--navbar-height)] border-b border-solid border-b-[color:var(--greyOpacity200)] sticky top-0 left-0 z-50 w-full bg-white/[0.85] backdrop-blur-2xl dark:bg-[color:var(--theme)]`}
     >
       <div className={`max-w-6xl w-full h-full m-auto`}>
         <div className={`flex justify-between w-11/12 m-auto max-w-[calc(100%_-_48px)] h-full`}>

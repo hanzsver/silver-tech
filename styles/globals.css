@@ -6,3 +6,13 @@
   --greyOpacity200: rgba(0, 27, 55, 0.1);
   --navbar-height: 60px;
 }
+
+html.light {
+  --theme: #ffffff;
+  --color: #333d4b;
+}
+
+html.dark {
+  --theme: #1a1b1e;
+  --color: #e4e5e7;
+}
