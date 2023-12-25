@@ -19,7 +19,9 @@ const Container = (props) => {
         <meta property="og:site_name" content={meta.author} />
       </Head>
       <Header />
-      <main className={`w-full max-w-3xl`}>{props.children}</main>
+      <main className={`w-full h-full max-w-screen-md m-auto mb-20`}>
+        <div className={`w-11/12 m-auto max-w-[calc(100%_-_48px)] h-full`}>{props.children}</div>
+      </main>
       <Footer />
     </>
   );

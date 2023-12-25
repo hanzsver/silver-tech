@@ -2,6 +2,7 @@ import Container from '../../components/Container';
 import { allPosts } from 'contentlayer/generated';
 import { InferGetStaticPropsType } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import PostComment from '../../components/PostComment';
 
 const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const MDXComponent = useMDXComponent(post.body.code);
@@ -14,10 +15,11 @@ const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   return (
     <Container customMeta={customMeta}>
-      <div className="mt-10 prose">
-        <h1 className="text-sky-700">{post.title}</h1>
+      <article className={`max-w-none w-full mt-10 prose`}>
+        <h1>{post.title}</h1>
         <MDXComponent />
-      </div>
+      </article>
+      <PostComment />
     </Container>
   );
 };
