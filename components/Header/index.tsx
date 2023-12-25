@@ -1,6 +1,7 @@
+import { Montserrat } from 'next/font/google';
 import Link from 'next/link';
 import navlinks from '../../data/navlinks';
-import { Montserrat } from 'next/font/google';
+import ThemeToggle from './ThemeToggle';
 
 const montserrat = Montserrat({
   weight: ['400', '600'],
@@ -21,11 +22,12 @@ export default function Header() {
             </Link>
           </div>
           <nav className={`flex items-center min-h-[var(--navbar-height)]`}>
-            {navlinks.map((nav) => (
+            {/* {navlinks.map((nav) => (
               <Link href={nav.link} key={nav.title} className={`mr-5`} legacyBehavior>
                 {nav.title}
               </Link>
-            ))}
+            ))} */}
+            <ThemeToggle />
           </nav>
         </div>
       </div>
