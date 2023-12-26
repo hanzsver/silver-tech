@@ -1,6 +1,5 @@
 import { Montserrat } from 'next/font/google';
 import Link from 'next/link';
-import navlinks from '../../data/navlinks';
 import ThemeToggle from './ThemeToggle';
 
 const montserrat = Montserrat({

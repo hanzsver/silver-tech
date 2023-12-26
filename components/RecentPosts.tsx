@@ -1,7 +1,7 @@
-import Link from "next/link";
+import Link from 'next/link';
+import PostThumbnail from './PostThumbnail';
 
 const RecentPosts = ({ posts }) => {
-    
   const recentPosts = posts || [];
 
   return (
@@ -9,16 +9,11 @@ const RecentPosts = ({ posts }) => {
       <h1 className={`text-3xl font-extrabold`}>최근 게시물</h1>
       <div className={`flex flex-col`}>
         {recentPosts.slice(0, 5).map((post) => (
-          (<Link
-            key={post._id}
-            href={`/blog/${post._raw.flattenedPath}`}
-            passHref
-            className="mt-5">
-
+          <Link key={post._id} href={`/blog/${post._raw.flattenedPath}`} passHref className="mt-5">
+            <PostThumbnail thumbnail={post.thumbnail} alt={post.title} />
             <div className={`font-medium text-xl`}>{post.title}</div>
             <div className={`font-light`}>{post.description}</div>
-
-          </Link>)
+          </Link>
         ))}
       </div>
     </section>
