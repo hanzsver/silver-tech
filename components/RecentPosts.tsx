@@ -6,13 +6,19 @@ const RecentPosts = ({ posts }) => {
 
   return (
     <section className={`mt-10`}>
-      <h1 className={`text-3xl font-extrabold`}>최근 게시물</h1>
       <div className={`flex flex-col`}>
         {recentPosts.slice(0, 5).map((post) => (
-          <Link key={post._id} href={`/blog/${post._raw.flattenedPath}`} passHref className="mt-5">
-            <PostThumbnail thumbnail={post.thumbnail} alt={post.title} />
-            <div className={`font-medium text-xl`}>{post.title}</div>
-            <div className={`font-light`}>{post.description}</div>
+          <Link
+            key={post._id}
+            href={`/blog/${post._raw.flattenedPath}`}
+            passHref
+            className={`flex justify-between items-center [&+&]:mt-20`}
+          >
+            <div className={`flex flex-col items-start w-full mr-24`}>
+              <div className={`text-2xl font-semibold mb-2.5`}>{post.title}</div>
+              <div className={`font-light`}>{post.description}</div>
+            </div>
+            <PostThumbnail thumbnail={post.thumbnail} alt={post.title} width={268} height={160} />
           </Link>
         ))}
       </div>
