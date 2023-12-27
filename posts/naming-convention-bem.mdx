@@ -1,0 +1,203 @@
+---
+title: CSS 방법론 - BEM 방식
+date: 2021-11-14
+description: BEM 방법론
+thumbnail: https://github.com/hanzsver/silver-tech/assets/146055547/894ec6f7-6d9d-443d-9109-dba6ede50823
+---
+
+웹이 발전함에 따라 CSS도 활용도가 높아지고 빠른 속도로 다양하게 변화하고 있습니다.
+CSS 방법론은 협업 시 사람마다 다른 코드 구조 및 스타일 정의를 통일 시키고, 코드의 재사용성을 높이며, 유지 보수와 확장에 용이하도록 도움을 주는 여러 가지 방법론을 제시합니다.
+
+오늘은 그중 가장 사용도가 높은 BEM에 대해 정리해 봤습니다.
+
+---
+
+## BEM 이란?
+
+- 여러 CSS 방법론 중 하나로, 직관적인 규칙을 통해 쉬운 의미 예측을 가능하게 하는 네이밍 기법입니다.
+
+- BEM은 _Block Element Modifier_ 의 약자입니다. 이 세 가지 요소를 각각 더블 언더바(`__`)와 더블 하이픈(`--`) 으로 구분 지어 작성합니다.
+
+> 아래와 같이 보여지는 형태들은 BEM 방식으로 작성한 클래스 형식입니다.
+
+```css
+.nav {
+}
+.nav__list {
+}
+.nav__list--active {
+}
+```
+
+> BEM 방식은 CSS 전처리기인 `SASS` `SCSS` `LESS` 등에서 일관된 코딩 구조를 만드는데에 더욱 효과적입니다.
+
+```scss
+.nav {
+  &__list {
+    &--active {
+    }
+  }
+}
+```
+
+---
+
+## BEM 사용법
+
+사용 전 `Block` `Element` `Modifier` 각 요소의 정확한 이해가 필요합니다.
+먼저, 아래의 이미지를 참조하세요.
+![](https://images.velog.io/images/zlevn/post/f72c2296-d5ae-4b0b-9f05-f4c5e1bc9b82/image.png)
+
+---
+
+### Block
+
+- 블럭은 재사용이 가능하고 어딘가에 종속되어 있지 않은, 기능적으로 독립적인 컴포넌트를 뜻합니다.
+
+- 블럭은 독립적으로 사용되어야 하기에 여백이나 위치값(margin, position)은 직접적으로 선언하지 않는 것이 좋습니다.
+- 블럭은 서로 중첩이 가능하며, 우선순위 또는 계층 구조가 없습니다. 한 페이지 내 블럭과 엘리먼트에게 의존하지 않습니다.
+
+          header, logo 모두 블럭인 경우의 아래 예시를 참조하세요.
+
+  >
+
+  ```html
+  /* 옳은 예 :: 블럭의 중첩 사용 추가 스타일 필요시 엘리먼트 클래스 생성 후 선언 */
+  <div class="header">
+    <div class="logo header__logo"></div>
+  </div>
+  ```
+
+  ```scss
+  .header {
+    &__logo {
+    }
+  }
+  .logo {
+  }
+  ```
+
+  > ```html
+  > /* 잘못된 예: 블럭 내 블럭이 들어간 계층 구조 */
+  > ```
+
+          <div class="header">
+          <div class="header__logo">
+          </div>
+
+      </div>
+
+  ````
+  ```scss
+  .header{
+    &__logo{}
+  }
+  ````
+
+---
+
+### Element
+
+- 엘리먼트는 블럭을 구성하는 단위 요소를 뜻하며, 더블 언더바(`__`) 로 구분합니다.
+- 자신이 속한 블럭 내에서만 의미를 가지는 의존적인 형태로, 부모 블럭 외에서의 재사용은 불가합니다.
+- 엘리먼트 또한 서로 중첩이 가능하며, 우선순위 또는 계층 구조가 없습니다. 또, 혼합 사용이 가능합니다.
+
+  >
+
+  ```html
+  /* 옳은 예 :: 엘리먼트의 혼합사용 */
+  <div class="content">
+    <div class="content__menu1">
+      <div class="content__list"></div>
+    </div>
+    <div class="content__menu2"></div>
+  </div>
+  ```
+
+  > ```html
+  > /* 잘못된 예: 엘리먼트 내 엘리먼트가 들어간 계층 구조 */
+  > ```
+
+  <div class="content">
+    <div class="content__menu">
+      <div class="content__menu__list"></div>
+    </div>
+  </div>
+  ```
+
+---
+
+### Modifier
+
+- 모디파이어는 블럭이나 엘리먼트의 속성을 담당합니다. 요소의 외관이나 상태를 변화시킬 때 사용하며, 더블 하이픈(`--`)으로 구분합니다.
+
+(ex: active, disabled, focus ...)
+
+- 보여지는 대로가 아닌, 속성의 기능이나 목적에 의미를 두고 작성합니다.
+  아래의 이미지를 참조하세요.
+  Form에서 필수로 입력해야 하는 Row에는 별표(\*) 기호가 들어갑니다. 이는 보여지는 대로 `form__label—star`, `form__label—red` 로 작성하는 것이 아닌, 필수라는 기능적 의미를 반영하여 `form__label—required` 라고 작성하는 것이 좋습니다.
+
+  ![](https://images.velog.io/images/zlevn/post/7352844c-0f99-4db8-9321-8f46c34fe655/image.png)
+
+- 모디파이어는 값이 true 라고 가정하고 사용하는 `Boolean type` 과 성질/내용을 싱글 하이픈(`-`) 으로 구분하여 기입하는 `Key-value type` 두 가지로 나누어 집니다.
+
+  > 형용사의 형태는 `Boolean type` 이라고 이해하면 쉽습니다.
+
+  ```html
+  /* Boolean type */
+  <div class="search__input search__input--disabled"></div>
+  <button class="btn btn--active"></button>
+  ```
+
+  ```html
+  /* Key-value type */
+  <div class="search__title search__title--color-red"></div>
+  <button class="btn btn--theme-xmas"></button>
+  ```
+
+---
+
+## BEM 사용 규칙
+
+- BEM 방식은 ID 를 사용하지 않고, 오직 Class 만을 사용합니다.
+- 대문자는 사용하지 않습니다. 오직 소문자와 숫자 만을 사용합니다.
+
+  >
+
+  ```html
+  /* 옳은 예 */ <input class="form__input--read-only" />
+  ```
+
+  ```html
+  /* 잘못된 예 */ <input class="form__input--readOnly" />
+  ```
+
+- 여러 단어의 조합은 싱글 하이픈(`-`) 으로 연결합니다. (ex: `sign-form__input`, `project-detail__popup`)
+- 세가지 요소 모두 보이는 대로 가 아닌, 코드의 목적에 의미를 두고 작성합니다. (ex: red, big 등의 표현 삼가. 모디파이어의 `Key-value type` 에선 가능)
+- 클래스 명은 간단하고 명확하게 작성하여 무엇을 나타내는지 분명히 전달 시킵니다.
+- 모든 블록에서 엘리먼트와 모디파이어는 단독 사용이 불가하며, 필수가 아닌 선택적으로 사용합니다.
+  즉, 모든 클래스는 블럭 요소를 필수 포함하지만 요소나 속성은 가지지 않아도 됩니다.
+
+  >
+
+  ```html
+  /* Block Only */
+  <div class="form"></div>
+  ```
+
+  ```html
+  /* Block+Element Only */ <input class="form__input" />
+  ```
+
+  ```html
+  /* Block+Modifier Only */
+  <div class="form--required"/></div>
+  ```
+
+---
+
+## 참고
+
+http://getbem.com/naming/
+https://9elements.com/bem-cheat-sheet/
+https://codepen.io/CarlosRayonAlvarez/pen/PoPzGrO
